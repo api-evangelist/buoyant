@@ -1,33 +1,49 @@
 aid: buoyant
 name: Buoyant
 description: >-
-  Demystify agentic traffic with Linkerd, the only AI-aware service mesh to give
+  Buoyant is the creator of Linkerd, the only AI-aware service mesh that gives
   you metrics on resource, tool, and prompt usage like failure rate, latency,
-  and throughput in the observability stack you already use. 
+  and throughput in the observability stack you already use.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
+  - Service Mesh
+  - Kubernetes
+  - Observability
+  - Linkerd
 created: '2026-01-02'
-modified: '2026-01-02'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/buoyant/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
   - aid: buoyant:buoyant
-    name: Buoyant
+    name: Buoyant Linkerd
     description: >-
-      Demystify agentic traffic with Linkerd, the only AI-aware service mesh to
-      give you metrics on resource, tool, and prompt usage like failure rate,
-      latency, and throughput in the observability stack you already use. 
-    humanURL: ' https://www.buoyant.io/'
+      Linkerd is the only AI-aware service mesh to give you metrics on resource,
+      tool, and prompt usage like failure rate, latency, and throughput in the
+      observability stack you already use.
+    humanURL: https://buoyant.io/
     tags:
-      - API
+      - Service Mesh
+      - Kubernetes
+      - Observability
     properties:
       - type: Documentation
-        url: ' https://www.buoyant.io/'
+        url: https://linkerd.io/docs/
+      - type: Website
+        url: https://buoyant.io/
+common:
+  - type: Portal
+    url: https://buoyant.io/
+  - type: Documentation
+    url: https://linkerd.io/docs/
+  - type: GitHub Organization
+    url: https://github.com/linkerd
+  - type: Blog
+    url: https://buoyant.io/blog/
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
