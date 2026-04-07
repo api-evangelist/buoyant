@@ -9,10 +9,10 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Service Mesh
   - Kubernetes
-  - Observability
   - Linkerd
+  - Observability
+  - Service Mesh
 created: '2026-01-02'
 modified: '2026-03-16'
 url: >-
@@ -27,9 +27,9 @@ apis:
       observability stack you already use.
     humanURL: https://buoyant.io/
     tags:
-      - Service Mesh
       - Kubernetes
       - Observability
+      - Service Mesh
     properties:
       - type: Documentation
         url: https://linkerd.io/docs/
