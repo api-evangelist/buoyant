@@ -1,0 +1,13 @@
+{
+  "repo": "buoyant",
+  "feeds": [
+    {
+      "source": "https://buoyant.io/blog/",
+      "feed_url": "https://www.buoyant.io/blog/rss.xml",
+      "saved": 10,
+      "title": "Buoyant Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:24:58Z"
+}
