@@ -97,6 +97,19 @@ common:
     url: https://slack.linkerd.io/
   - type: Community
     url: https://linkerd.io/community/
+  - type: Integrations
+    url: https://www.buoyant.io/partners
+integrations:
+  - name: Service Mesh Academy
+  - name: AWS
+  - name: Suse
+  - name: IntelliGCR
+  - name: Microsoft
+  - name: krumware
+  - name: testifysec
+  - name: Datadog
+  - name: close nav
+  - name: Linkedin
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
