@@ -8,7 +8,7 @@ description: >-
   features including FIPS 140-2/140-3 validated encryption and multi-cluster
   support.
 type: Index
-x-type: company
+kind: company
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -47,7 +47,7 @@ apis:
         url: https://linkerd.io/
       - type: Reference
         url: https://linkerd.io/2.x/reference/
-      - type: GitHub Repository
+      - type: GitHubRepository
         url: https://github.com/linkerd/linkerd2
     x-features:
       - Mutual TLS for transparent encryption and authentication
@@ -87,7 +87,7 @@ common:
     url: https://buoyant.io/
   - type: Documentation
     url: https://linkerd.io/2.x/overview/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/linkerd
   - type: Blog
     url: https://buoyant.io/blog/
