@@ -2,12 +2,20 @@
   "repo": "buoyant",
   "feeds": [
     {
-      "source": "https://buoyant.io/blog/",
+      "source": "https://buoyant.io/blog/rss.xml",
       "feed_url": "https://buoyant.io/blog/rss.xml",
-      "title": "Buoyant Blog",
-      "saved": 48
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://github.com/linkerd",
+      "feed_url": "https://github.com/linkerd",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 59,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 60,
+  "fetched": "2026-06-01T23:35:02Z"
 }
