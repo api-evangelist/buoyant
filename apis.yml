@@ -83,6 +83,8 @@ apis:
       - type: Website
         url: https://buoyant.io/linkerd-enterprise
 common:
+  - type: DomainSecurity
+    url: security/buoyant-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/buoyantio
   - type: Portal
