@@ -36,7 +36,7 @@ created: '2026-01-02'
 modified: '2026-04-21'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/buoyant/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
   - aid: buoyant:linkerd
     name: Linkerd Service Mesh
