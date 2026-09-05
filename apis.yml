@@ -46,7 +46,7 @@ tags:
   - Service Mesh
   - Zero Trust
 created: '2026-01-02'
-modified: '2026-04-21'
+modified: '2026-09-04'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/buoyant/refs/heads/main/apis.yml
 specificationVersion: '0.23'
@@ -59,6 +59,7 @@ apis:
       circuit breaking, and observability to any Kubernetes workload without code
       changes. Supports HTTP, HTTP/2, gRPC, and TCP traffic.
     humanURL: https://linkerd.io/
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/buoyant.png
     tags:
       - Kubernetes
       - mTLS
@@ -67,13 +68,36 @@ apis:
       - Zero Trust
     properties:
       - type: Documentation
-        url: https://linkerd.io/2.x/overview/
+        url: https://linkerd.io/docs/
       - type: Website
         url: https://linkerd.io/
       - type: Reference
-        url: https://linkerd.io/2.x/reference/
+        url: https://linkerd.io/docs/reference/
       - type: GitHubRepository
         url: https://github.com/linkerd/linkerd2
+      - type: Protobuf
+        name: Linkerd proxy API — Destination
+        url: grpc/buoyant-linkerd-proxy-api-destination.proto
+      - type: Protobuf
+        name: Linkerd proxy API — Identity
+        url: grpc/buoyant-linkerd-proxy-api-identity.proto
+      - type: Protobuf
+        name: Linkerd proxy API — Inbound server policies
+        url: grpc/buoyant-linkerd-proxy-api-inbound.proto
+      - type: Protobuf
+        name: Linkerd proxy API — Outbound policies
+        url: grpc/buoyant-linkerd-proxy-api-outbound.proto
+      - type: Protobuf
+        name: Linkerd proxy API — Tap
+        url: grpc/buoyant-linkerd-proxy-api-tap.proto
+      - type: Protobuf
+        name: Linkerd Viz metrics API
+        url: grpc/buoyant-linkerd-viz-metrics-api.proto
+      - type: Protobuf
+        name: Linkerd Viz tap API
+        url: grpc/buoyant-linkerd-viz-tap.proto
+      - type: SourceCode
+        url: https://github.com/linkerd/linkerd2-proxy-api
     x-features:
       - Mutual TLS for transparent encryption and authentication
       - Cryptographic workload identity
@@ -97,6 +121,7 @@ apis:
       Linkerd with additional features including FIPS-validated cryptography,
       lifecycle automation, multi-cluster networking, and enterprise SLA support.
     humanURL: https://buoyant.io/linkerd-enterprise
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/buoyant.png
     tags:
       - Enterprise
       - FIPS
@@ -107,7 +132,48 @@ apis:
         url: https://docs.buoyant.io/buoyant-enterprise-linkerd/latest/overview/
       - type: Website
         url: https://buoyant.io/linkerd-enterprise
+      - type: Reference
+        url: https://docs.buoyant.io/buoyant-enterprise-linkerd/latest/reference/
+      - type: GettingStarted
+        url: https://docs.buoyant.io/buoyant-enterprise-linkerd/latest/installation/
+      - type: ChangeLog
+        url: https://docs.buoyant.io/release-notes/buoyant-enterprise-linkerd/
+      - type: Pricing
+        url: https://www.buoyant.io/pricing
+      - type: Packages
+        url: packages/buoyant-packages.yml
+  - aid: buoyant:buoyant-cloud
+    name: Buoyant Cloud
+    description: >-
+      Buoyant Cloud is the hosted control surface for Linkerd fleets — health checks,
+      golden metrics, multi-cluster link management and automated Linkerd upgrades.
+      Clusters connect through the Buoyant Cloud agent (the linkerd-buoyant Helm
+      chart), which authenticates with an org-scoped client ID and secret and speaks
+      gRPC to api.buoyant.cloud. There is no public REST developer API: the endpoint
+      answers every non-gRPC request with HTTP 415 and grpc-status 3 (probed
+      2026-09-04), and Buoyant documents it only as the host its own agent calls.
+    humanURL: https://buoyant.cloud/
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/buoyant.png
+    baseURL: https://api.buoyant.cloud
+    tags:
+      - Kubernetes
+      - Observability
+      - Service Mesh
+    properties:
+      - type: Documentation
+        url: https://docs.buoyant.io/buoyant-cloud/getting-started/
+      - type: Website
+        url: https://buoyant.cloud/
+      - type: Authentication
+        url: authentication/buoyant-authentication.yml
+      - type: SignUp
+        url: https://buoyant.cloud/
+      - type: ChangeLog
+        url: https://docs.buoyant.io/release-notes/buoyant-cloud/
+
 common:
+  - type: Website
+    url: https://buoyant.io/
   - type: IssueTracker
     url: https://github.com/linkerd/linkerd2/issues
   - type: Releases
@@ -128,7 +194,7 @@ common:
   - type: Portal
     url: https://buoyant.io/
   - type: Documentation
-    url: https://linkerd.io/2.x/overview/
+    url: https://linkerd.io/docs/
   - type: GitHubOrganization
     url: https://github.com/linkerd
   - type: Blog
@@ -141,6 +207,59 @@ common:
     url: https://linkerd.io/community/
   - type: Integrations
     url: https://www.buoyant.io/partners
+  - type: Documentation
+    name: Buoyant Enterprise for Linkerd documentation
+    url: https://docs.buoyant.io/buoyant-enterprise-linkerd/latest/overview/
+  - type: APIReference
+    url: https://linkerd.io/docs/reference/
+  - type: GettingStarted
+    url: https://linkerd.io/2/getting-started/
+  - type: Support
+    url: https://www.buoyant.io/linkerd-support
+  - type: HelpCenter
+    name: Buoyant Linkerd Forum
+    url: https://linkerd.buoyant.io/
+  - type: PrivacyPolicy
+    url: https://www.buoyant.io/privacy-policy
+  - type: Login
+    url: https://buoyant.cloud/
+  - type: GitHubOrganization
+    name: BuoyantIO
+    url: https://github.com/BuoyantIO
+  - type: LLMsTxt
+    url: llms/buoyant-llms.txt
+  - type: Packages
+    url: packages/buoyant-packages.yml
+  - type: SDKs
+    url: packages/buoyant-packages.yml
+  - type: CLI
+    url: cli/buoyant-cli.yml
+  - type: Protobuf
+    name: gRPC contract index
+    url: grpc/buoyant-grpc.yml
+  - type: Authentication
+    url: authentication/buoyant-authentication.yml
+  - type: Conventions
+    url: conventions/buoyant-conventions.yml
+  - type: Conformance
+    url: conformance/buoyant-conformance.yml
+  - type: Compliance
+    url: conformance/buoyant-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/buoyant-lifecycle.yml
+  - type: Deprecation
+    url: lifecycle/buoyant-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/buoyant-changelog.yml
+  - type: VulnerabilityDisclosure
+    url: security/buoyant-vulnerability-disclosure.yml
+  - type: Security
+    url: security/buoyant-vulnerability-disclosure.yml
+  - type: Plans
+    url: plans/buoyant-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/buoyant-rate-limits.yml
+
 integrations:
   - name: Service Mesh Academy
   - name: AWS
@@ -155,3 +274,8 @@ integrations:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-04'
+  status: enriched
+  artifacts_added: 25
+  pass: local-v3

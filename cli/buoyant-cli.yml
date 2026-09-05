@@ -1,0 +1,94 @@
+specification: API Commons CLI
+specificationVersion: '0.1'
+provider: Buoyant
+providerId: buoyant
+generated: '2026-09-04'
+method: searched
+source: >-
+  https://linkerd.io/docs/reference/cli/ (command list read 2026-09-04),
+  https://run.linkerd.io/install and https://enterprise.buoyant.io/install
+  (both HTTP 200 at probe time), and the BuoyantIO/homebrew-linkerd tap.
+note: >-
+  Buoyant's primary consumption surface is a CLI, not a REST API. Two first-party
+  binaries exist: the open-source `linkerd` CLI, and the Buoyant Extension
+  (`linkerd buoyant` / the BEL CLI) that installs and manages Buoyant Enterprise for
+  Linkerd and the Buoyant Cloud agent. The CLI speaks to the in-cluster gRPC
+  services whose contracts are saved in grpc/ in this repo.
+clis:
+  - name: linkerd
+    scope: Open-source Linkerd
+    docs: https://linkerd.io/docs/reference/cli/
+    install:
+      - method: script
+        command: curl --proto '=https' --tlsv1.2 -sSfL https://run.linkerd.io/install | sh
+        pinned: false
+      - method: homebrew
+        command: brew install buoyantio/linkerd/linkerd
+        tap: https://github.com/BuoyantIO/homebrew-linkerd
+        note: >-
+          The tap formula declares version "stable-2.12.4" but installs by running
+          https://buoyant.cloud/install-edge, so the declared version does not describe
+          what is installed. See packages/buoyant-packages.yml.
+    commands:
+      - name: authz
+        description: List authorizations for a resource
+      - name: check
+        description: Check the Linkerd installation for potential problems
+      - name: completion
+        description: Output shell completion code for the specified shell (bash, zsh or fish)
+      - name: diagnostics
+        description: Commands used to diagnose Linkerd components
+      - name: identity
+        description: Display the certificate(s) of one or more selected pod(s)
+      - name: inject
+        description: Add the Linkerd proxy to a Kubernetes config
+      - name: install
+        description: Output Kubernetes configs to install Linkerd
+      - name: install-cni
+        description: Output Kubernetes configs to install Linkerd CNI
+      - name: multicluster
+        description: Manages the multicluster setup for Linkerd
+      - name: profile
+        description: Output service profile config for Kubernetes
+      - name: prune
+        description: Output extraneous Kubernetes resources in the linkerd control plane
+      - name: uninject
+        description: Remove the Linkerd proxy from a Kubernetes config
+      - name: uninstall
+        description: Output Kubernetes resources to uninstall Linkerd control plane
+      - name: upgrade
+        description: Output Kubernetes configs to upgrade an existing Linkerd control plane
+      - name: version
+        description: Print the client and server version information
+      - name: viz
+        description: >-
+          Manages the linkerd-viz extension. This is the client for the
+          linkerd2.viz.Api gRPC service saved as
+          grpc/buoyant-linkerd-viz-metrics-api.proto.
+    key_flows:
+      - name: Install and validate
+        steps: [linkerd install, linkerd check]
+      - name: Mesh a workload
+        steps: [linkerd inject, linkerd check --proxy]
+      - name: Observe golden metrics
+        steps: [linkerd viz install, linkerd viz stat, linkerd viz top]
+      - name: Inspect workload identity
+        steps: [linkerd identity]
+  - name: Buoyant Enterprise Linkerd CLI / Buoyant Extension
+    scope: Buoyant Enterprise for Linkerd and Buoyant Cloud
+    docs: https://docs.buoyant.io/buoyant-enterprise-linkerd/latest/installation/
+    install:
+      - method: script
+        command: curl --proto '=https' --tlsv1.2 -sSfL https://enterprise.buoyant.io/install | sh
+        pinned: false
+    package: https://helm.buoyant.cloud
+    module: github.com/BuoyantIO/linkerd-buoyant
+    version: v0.40.6
+    note: >-
+      Distributed both as an installer script and as the linkerd-buoyant Helm chart /
+      Go module. Commands are documented inside the BEL installation and upgrade
+      guides rather than in a single flat CLI reference page, so no per-command list
+      is recorded here rather than inventing one.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,117 @@
+specification: API Commons Conformance
+specificationVersion: '0.1'
+provider: Buoyant
+providerId: buoyant
+generated: '2026-09-04'
+method: derived
+source: >-
+  Derived from the protobuf contracts saved in grpc/ in this repo (evidence cites the
+  exact file and line), plus https://linkerd.io/docs/features/gateway-api/,
+  https://www.buoyant.io/pricing, https://www.buoyant.io/fips-kubernetes-service-mesh
+  and the CNCF security audits linked from
+  https://github.com/linkerd/linkerd2/blob/main/SECURITY.md. Read 2026-09-04.
+conformance:
+  - id: grpc
+    conforms: true
+    evidence: >-
+      The entire published contract is proto3 gRPC — 7 services, 18 RPCs across
+      grpc/*.proto in this repo, with server-streaming used for all watch surfaces.
+  - id: protobuf
+    conforms: true
+    evidence: 'grpc/buoyant-linkerd-proxy-api-*.proto — every file declares syntax = "proto3".'
+  - id: mtls
+    conforms: true
+    evidence: >-
+      grpc/buoyant-linkerd-proxy-api-identity.proto — the Identity.Certify RPC exchanges a
+      Kubernetes ServiceAccount token and a PEM-encoded x509 CSR for a time-bounded leaf
+      certificate plus its intermediate chain. Mutual TLS between meshed workloads is the
+      product's core function, not an option.
+  - id: x509
+    conforms: true
+    evidence: >-
+      grpc/buoyant-linkerd-proxy-api-identity.proto — CertifyRequest.certificate_signing_request
+      and CertifyResponse.leaf_certificate are PEM-encoded x509.
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No OAuth 2.0 metadata document served on any host; see
+      well-known/buoyant-well-known.yml. The Buoyant Cloud agent uses a static
+      org-scoped clientID/clientSecret pair, not an OAuth 2.0 grant flow.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returned 404 on every Buoyant and Linkerd host probed 2026-09-04.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors are gRPC status codes and grpc-message trailers, not application/problem+json.
+      Observed live on api.buoyant.cloud 2026-09-04: grpc-status 3, grpc-message
+      "invalid gRPC request content-type".
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      Not applicable — the published contract has no mutating operations. See
+      conventions/buoyant-conventions.yml, idempotency.coverage = na.
+  - id: pagination
+    conforms: false
+    evidence: No pagination construct exists in any of the 14 .proto files; list RPCs return full scoped result sets.
+domain_standards:
+  - id: gateway-api
+    name: Kubernetes Gateway API
+    conforms: true
+    evidence: >-
+      IN-CONTRACT SIGNATURE. grpc/buoyant-linkerd-proxy-api-inbound.proto line 189 and
+      grpc/buoyant-linkerd-proxy-api-outbound.proto line 111 both cite
+      gateway-api.sigs.k8s.io as the source of their route semantics, and the contract
+      carries dedicated http_route.proto, grpc_route.proto and tls_route.proto message sets
+      mirroring HTTPRoute, GRPCRoute and TLSRoute. Buoyant Enterprise Linkerd 2.20.0
+      requires Gateway API 1.2.1+ and 2.20.2 adds v1.5.1 compatibility.
+    docs: https://linkerd.io/docs/features/gateway-api/
+  - id: spiffe
+    name: SPIFFE workload identity
+    conforms: true
+    evidence: >-
+      IN-CONTRACT SIGNATURE. grpc/buoyant-linkerd-proxy-api-destination.proto line 145
+      documents the workload identity URI form as
+      "spiffe://trust-domain/workload-dentifier" [sic, verbatim from the source].
+      Identity is bound to a SPIFFE URI SAN rather than to network location.
+    docs: https://www.buoyant.io/blog/who-not-where-workload-identity-with-spiffe
+  - id: fips-140
+    name: FIPS 140-2 / 140-3 validated cryptography
+    conforms: true
+    evidence: >-
+      Buoyant Enterprise for Linkerd ships optional FIPS 140-3/140-2 validated
+      cryptography, sold on the Strategic tier. This is a product claim on Buoyant's own
+      pages, not an in-contract signature, and is recorded as such.
+    docs: https://www.buoyant.io/fips-kubernetes-service-mesh
+  - id: opentelemetry
+    name: OpenTelemetry
+    conforms: true
+    evidence: >-
+      Linkerd emits OpenTelemetry-compatible distributed traces for meshed traffic; the
+      go.opentelemetry.io/otel dependency is patched in the enterprise-2.20.2 release notes
+      (GO-2026-5158 / CVE-2026-41178).
+    docs: https://docs.buoyant.io/release-notes/buoyant-enterprise-linkerd/enterprise-2.20.2/
+compliance:
+  - name: CNCF graduation
+    published: true
+    evidence: Linkerd is a CNCF-graduated project — the first service mesh to graduate.
+  - name: Third-party security audits
+    published: true
+    evidence: >-
+      https://github.com/linkerd/linkerd2/blob/main/SECURITY.md states the CNCF provides
+      periodic third-party security audits and that Linkerd publishes them unredacted;
+      the 2024 audit is published at https://linkerd.io/2025/02/18/linkerd-2024-security-audit/.
+  - name: SBOMs
+    published: false
+    evidence: >-
+      SBOMs are listed as a Strategic-tier entitlement on https://www.buoyant.io/pricing,
+      i.e. delivered to customers under contract rather than published publicly.
+  - name: SOC 2 / ISO 27001
+    published: false
+    evidence: >-
+      No trust center or named certification page found. /trust, /security, /compliance and
+      /soc2 on www.buoyant.io all returned 404 on 2026-09-04, and trust.buoyant.io and
+      security.buoyant.io do not resolve.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,191 @@
+specification: API Commons Packages
+specificationVersion: '0.1'
+provider: Buoyant
+providerId: buoyant
+generated: '2026-09-04'
+method: searched
+source: >-
+  Registry metadata read live on 2026-09-04 from helm.buoyant.cloud/index.yaml,
+  helm.linkerd.io/{stable,edge}/index.yaml, proxy.golang.org, crates.io and the
+  BuoyantIO/homebrew-linkerd tap. npm, PyPI, NuGet, RubyGems, Packagist and Maven
+  Central were checked and hold no first-party Buoyant or Linkerd client library.
+note: >-
+  Buoyant does not distribute REST/gRPC client SDKs. Its shipped artifacts are Helm
+  charts, Go modules, a Rust crate of the proxy gRPC bindings, and CLI installers.
+  Only the Buoyant-operated Helm repo (helm.buoyant.cloud) and the Linkerd edge
+  channel are actively released; the open-source stable Helm channel and the Homebrew
+  tap have not moved since 2024 and 2023 respectively, which is recorded below as a
+  currency finding rather than a defect in the enterprise product.
+packages:
+  - name: linkerd-enterprise-control-plane
+    registry: helm
+    registry_url: https://helm.buoyant.cloud
+    official: true
+    language: helm
+    version: 2.20.2
+    published: '2026-08-26'
+    install: helm install linkerd-enterprise-control-plane -n linkerd --repo https://helm.buoyant.cloud linkerd-enterprise-control-plane
+    description: Buoyant Enterprise for Linkerd control plane chart.
+  - name: linkerd-enterprise-crds
+    registry: helm
+    registry_url: https://helm.buoyant.cloud
+    official: true
+    language: helm
+    version: 2.20.2
+    published: '2026-08-26'
+    description: Buoyant Enterprise for Linkerd CRD chart.
+  - name: linkerd-enterprise-multicluster
+    registry: helm
+    registry_url: https://helm.buoyant.cloud
+    official: true
+    language: helm
+    version: 2.20.2
+    published: '2026-08-26'
+    description: Buoyant Enterprise for Linkerd multi-cluster extension chart.
+  - name: linkerd-buoyant
+    registry: helm
+    registry_url: https://helm.buoyant.cloud
+    official: true
+    language: helm
+    version: 0.40.6
+    published: '2026-09-02'
+    description: >-
+      The Buoyant Extension aggregate chart — installs the Buoyant Cloud agent and
+      the Linkerd dashboard components that talk to api.buoyant.cloud.
+  - name: linkerd-preview-control-plane
+    registry: helm
+    registry_url: https://helm.buoyant.cloud
+    official: true
+    language: helm
+    version: 26.8.4
+    published: '2026-08-25'
+    description: Preview (pre-release) channel of the Buoyant Enterprise Linkerd control plane.
+  - name: github.com/BuoyantIO/linkerd-buoyant
+    registry: go
+    registry_url: https://pkg.go.dev/github.com/BuoyantIO/linkerd-buoyant
+    official: true
+    language: go
+    version: v0.40.6
+    published: '2026-08-26'
+    description: >-
+      Go module for the Buoyant Cloud agent and the linkerd-buoyant CLI extension.
+      Read from proxy.golang.org/@latest.
+  - name: github.com/linkerd/linkerd2-proxy-api
+    registry: go
+    registry_url: https://pkg.go.dev/github.com/linkerd/linkerd2-proxy-api
+    official: true
+    language: go
+    version: v0.20.0
+    published: '2026-06-03'
+    description: >-
+      Generated Go bindings for the Linkerd proxy gRPC API (Destination, Identity,
+      InboundServerPolicies, OutboundPolicies, Tap). The .proto sources are saved
+      verbatim in grpc/ in this repo.
+  - name: linkerd2-proxy-api
+    registry: crates.io
+    registry_url: https://crates.io/crates/linkerd2-proxy-api
+    official: true
+    language: rust
+    version: 0.20.0
+    published: '2026-06-03'
+    description: Linkerd Proxy API gRPC bindings and utilities (Rust).
+  - name: linkerd-control-plane
+    registry: helm
+    registry_url: https://helm.linkerd.io/edge
+    official: true
+    language: helm
+    version: 2026.9.1
+    published: '2026-09-04'
+    description: >-
+      Open-source Linkerd control plane, edge channel. This is the actively released
+      OSS channel; edge-26.9.1 was published the same day this artifact was written.
+  - name: linkerd-crds
+    registry: helm
+    registry_url: https://helm.linkerd.io/edge
+    official: true
+    language: helm
+    version: 2026.9.1
+    published: '2026-09-04'
+    description: Open-source Linkerd CRDs, edge channel.
+  - name: linkerd-viz
+    registry: helm
+    registry_url: https://helm.linkerd.io/edge
+    official: true
+    language: helm
+    version: 2026.9.1
+    published: '2026-09-04'
+    description: >-
+      Linkerd Viz extension — ships the metrics-api gRPC service whose contract is
+      saved as grpc/buoyant-linkerd-viz-metrics-api.proto.
+  - name: linkerd-control-plane
+    registry: helm
+    registry_url: https://helm.linkerd.io/stable
+    official: true
+    language: helm
+    version: 1.16.11
+    published: '2024-02-20'
+    description: >-
+      Open-source Linkerd control plane, STABLE channel. CURRENCY FINDING — the
+      stable channel index has not published a new chart since 2024-02-20; Buoyant
+      moved stable/supported releases into Buoyant Enterprise for Linkerd and the
+      OSS project now ships on the edge channel. A consumer pinning
+      helm.linkerd.io/stable is pinning a 2024 artifact.
+  - name: linkerd
+    registry: homebrew
+    registry_url: https://github.com/BuoyantIO/homebrew-linkerd
+    official: true
+    language: shell
+    version: stable-2.12.4
+    published: null
+    description: >-
+      Homebrew tap formula (`brew install buoyantio/linkerd/linkerd`). CURRENCY
+      FINDING — the formula declares version "stable-2.12.4" and installs by
+      shelling out to https://buoyant.cloud/install-edge, so the pinned version
+      string no longer describes what is installed. published is null because a
+      Homebrew tap has no registry metadata endpoint and the GitHub commit API was
+      rate-limited at probe time; the version was read from the formula source.
+  - name: linkerd CLI
+    registry: cdn
+    registry_url: https://run.linkerd.io/install
+    official: true
+    language: shell
+    version: null
+    published: null
+    install: curl --proto '=https' --tlsv1.2 -sSfL https://run.linkerd.io/install | sh
+    description: >-
+      Official open-source Linkerd CLI installer. UNPINNED — the installer URL floats
+      to the current release, so a consumer cannot tell from the URL which version they
+      will get. Recorded as version null with this note rather than guessed.
+  - name: Buoyant Enterprise Linkerd CLI
+    registry: cdn
+    registry_url: https://enterprise.buoyant.io/install
+    official: true
+    language: shell
+    version: null
+    published: null
+    install: curl --proto '=https' --tlsv1.2 -sSfL https://enterprise.buoyant.io/install | sh
+    description: >-
+      Official BEL CLI installer. UNPINNED — floats to the current enterprise release
+      (2.20.2 at probe time, per the Helm index and the release notes).
+absent_registries:
+  - registry: npm
+    checked: '2026-09-04'
+    result: no first-party package (linkerd2 and @buoyantio/* return 404)
+  - registry: pypi
+    checked: '2026-09-04'
+    result: no first-party package
+  - registry: maven-central
+    checked: '2026-09-04'
+    result: no first-party package
+  - registry: nuget
+    checked: '2026-09-04'
+    result: no first-party package
+  - registry: rubygems
+    checked: '2026-09-04'
+    result: no first-party package
+  - registry: packagist
+    checked: '2026-09-04'
+    result: no first-party package
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

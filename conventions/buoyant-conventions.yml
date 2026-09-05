@@ -1,0 +1,90 @@
+specification: API Commons Conventions
+specificationVersion: '0.1'
+provider: Buoyant
+providerId: buoyant
+generated: '2026-09-04'
+method: derived
+source: >-
+  Derived from the protobuf contracts saved in grpc/ in this repo, plus
+  https://linkerd.io/docs/reference/ and the Buoyant Enterprise Linkerd release notes.
+  Cross-links authentication/buoyant-authentication.yml,
+  lifecycle/buoyant-lifecycle.yml and rate-limits/buoyant-rate-limits.yml.
+note: >-
+  Buoyant ships no public REST API, so the usual HTTP conventions (pagination cursors,
+  sparse fieldsets, request-id headers) do not apply. The runtime semantics below are
+  those of the gRPC control-plane surface and are recorded honestly, including the
+  dimensions that are `na`.
+auth_style:
+  summary: mTLS workload identity in-cluster; client-credentials for the Buoyant Cloud agent.
+  see: authentication/buoyant-authentication.yml
+transport:
+  protocol: gRPC over HTTP/2
+  encoding: protobuf (proto3)
+  streaming: >-
+    Server-streaming is the dominant pattern. Destination.Get, Destination.GetProfile,
+    InboundServerPolicies.WatchPort, OutboundPolicies.Watch and Tap.Observe all return
+    streams; clients hold a long-lived watch and receive incremental updates rather than
+    polling.
+idempotency:
+  coverage: na
+  scope: []
+  mechanism: none
+  description: >-
+    The published gRPC surface has no mutating operations. Destination, InboundServerPolicies,
+    OutboundPolicies and the Viz Api are read/watch services; Identity.Certify issues a
+    certificate from a token the caller already holds and is naturally repeatable. There is no
+    write path for a replay-protection header to guard, so idempotency is `na` rather than
+    `none` — an honest not-applicable, not a missing feature. State changes in Linkerd are made
+    by applying Kubernetes resources through the Kubernetes API, whose own semantics
+    (declarative apply, resourceVersion optimistic concurrency) govern them.
+reversibility:
+  grade: na
+  description: >-
+    No write surface exists on the published contract, so there is nothing to reverse.
+    Configuration changes are Kubernetes resources; reversal is `kubectl apply` of the prior
+    manifest or a GitOps revert, governed by Kubernetes and the user's own delivery pipeline,
+    not by a Buoyant reversal operation. No reversal operation and no reversal window is
+    asserted here because Buoyant publishes none.
+  operations: []
+dry_run_mode:
+  supported: true
+  description: >-
+    The CLI is dry-run-shaped by design: `linkerd install`, `linkerd upgrade`, `linkerd inject`
+    and `linkerd profile` all WRITE KUBERNETES MANIFESTS TO STDOUT rather than mutating a
+    cluster, so the operator reviews and applies them separately. `linkerd check` validates an
+    installation without changing it.
+  source: https://linkerd.io/docs/reference/cli/
+pagination:
+  style: none
+  description: >-
+    No pagination in the contract. List-shaped RPCs (ListPods, ListServices, Edges, Gateways)
+    return full result sets scoped by namespace/resource selector; watch RPCs stream deltas.
+versioning:
+  style: channel + package version
+  description: >-
+    The wire contract is versioned by the linkerd2-proxy-api module/crate version (v0.20.0);
+    products are versioned by channel (edge CalVer, enterprise semver). See
+    lifecycle/buoyant-lifecycle.yml.
+error_envelope:
+  style: grpc-status
+  description: >-
+    Errors are gRPC status codes and grpc-message trailers, not RFC 9457 problem+json.
+    Observed live on api.buoyant.cloud 2026-09-04: grpc-status 3 (INVALID_ARGUMENT) with
+    grpc-message "invalid gRPC request content-type \"application/json\"".
+  rfc9457: false
+rate_limit_signaling:
+  published: false
+  description: >-
+    Buoyant publishes no rate limits or rate-limit response headers for its own endpoints.
+    Note the inverse capability: Buoyant Enterprise for Linkerd 2.20.0 added rate-limit-AWARE
+    load balancing, meaning Linkerd reads HTTP 429 responses from the services it proxies and
+    steers traffic away from them. That is a feature of the product, not a limit on the product.
+  see: rate-limits/buoyant-rate-limits.yml
+tracing:
+  supported: true
+  description: >-
+    Linkerd emits OpenTelemetry-compatible distributed traces and Prometheus metrics for meshed
+    traffic, including per-tool/resource/prompt metrics for meshed MCP servers.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

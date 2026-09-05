@@ -1,0 +1,102 @@
+specification: API Commons Lifecycle
+specificationVersion: '0.1'
+provider: Buoyant
+providerId: buoyant
+generated: '2026-09-04'
+method: searched
+source: >-
+  https://docs.buoyant.io/release-notes/, https://buoyant.io/pricing,
+  https://docs.buoyant.io/buoyant-enterprise-linkerd/latest/support/,
+  https://www.buoyant.io/blog/linkerd-2-14-end-of-life, the Helm channel indexes at
+  helm.linkerd.io and helm.buoyant.cloud (read 2026-09-04), and the deprecated RPC
+  markers in the .proto sources saved under grpc/ in this repo.
+versioning:
+  strategy: channel-based
+  description: >-
+    Open-source Linkerd ships on an EDGE channel using CalVer (edge-26.9.1). Supported,
+    long-lived releases are the commercial Buoyant Enterprise for Linkerd stream
+    (enterprise-2.20.2), released roughly quarterly with patch/hotpatch releases in
+    between. Contract versioning of the gRPC surface is carried by the
+    linkerd2-proxy-api module/crate version (v0.20.0, 2026-06-03).
+  channels:
+    - name: linkerd edge (open source)
+      url: https://helm.linkerd.io/edge
+      current: 2026.9.1
+      last_published: '2026-09-04'
+      status: active
+    - name: linkerd stable (open source)
+      url: https://helm.linkerd.io/stable
+      current: 1.16.11
+      last_published: '2024-02-20'
+      status: frozen
+      note: >-
+        FINDING (probed 2026-09-04): the open-source stable Helm channel index has not
+        published a chart since 2024-02-20. Supported stable releases moved into
+        Buoyant Enterprise for Linkerd. A consumer still pointing at
+        helm.linkerd.io/stable is pinned to a 2024 artifact.
+    - name: Buoyant Enterprise for Linkerd
+      url: https://helm.buoyant.cloud
+      current: 2.20.2
+      last_published: '2026-08-26'
+      status: active
+    - name: Buoyant Enterprise Linkerd preview
+      url: https://helm.buoyant.cloud
+      current: 26.8.4
+      last_published: '2026-08-25'
+      status: active
+deprecation:
+  policy_published: true
+  policy_url: https://docs.buoyant.io/release-notes/buoyant-enterprise-linkerd/
+  description: >-
+    Deprecations are announced in the dated per-version release notes and, for
+    end-of-life of an entire minor line, on the Buoyant blog with a stated EOL date.
+    Buoyant does not publish RFC 8594 Sunset/Deprecation HTTP headers — the contract is
+    gRPC and in-cluster, so header-based signalling does not apply; deprecation is
+    signalled in-contract instead via `option deprecated = true` on protobuf RPCs.
+  rfc8594_headers: false
+  end_of_life_examples:
+    - product: Linkerd 2.14 (open source)
+      eol_date: '2025-06-01'
+      announced: '2025-12-11'
+      url: https://www.buoyant.io/blog/linkerd-2-14-end-of-life
+      note: Announcement post confirms 2.14 reached end of life on June 1, 2025 and recommends upgrading.
+deprecated_operations:
+  - service: linkerd2.tap.Tap
+    rpc: Tap
+    file: grpc/buoyant-linkerd-viz-tap.proto
+    marker: option deprecated = true
+  - service: linkerd2.tap.Tap
+    rpc: TapByResource
+    file: grpc/buoyant-linkerd-viz-tap.proto
+    marker: option deprecated = true
+deprecated_configuration:
+  - name: config.beta.linkerd.io/proxy-enable-native-sidecar
+    replacement: config.linkerd.io/proxy-enable-native-sidecar
+    announced_in: enterprise-2.20.0
+    removal: next major Linkerd version
+  - name: proxyInit.image / --init-image
+    replacement: unified proxy image
+    announced_in: enterprise-2.20.0
+    removal: removed in 2.20.0
+support:
+  forums: https://linkerd.buoyant.io
+  issues: https://github.com/linkerd/linkerd2/issues
+  commercial: https://www.buoyant.io/linkerd-support
+  sla:
+    published_numbers: false
+    description: >-
+      The pricing page states that the Premium tier includes CVE remediation SLAs and
+      private support ticketing, and that the Strategic tier adds 24x7 enterprise
+      support with SLAs, hotpatch releases and SBOMs. Buoyant does not publish the
+      numeric response or resolution targets; they are contractual.
+    source: https://www.buoyant.io/pricing
+status_page:
+  published: false
+  checked: '2026-09-04'
+  note: >-
+    No status page found. status.buoyant.io and status.linkerd.io do not resolve;
+    buoyant.statuspage.io returns HTTP 200 but redirects to the Atlassian Statuspage
+    marketing site, not a Buoyant status page. No StatusPage pointer is emitted.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

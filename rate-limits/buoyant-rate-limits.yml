@@ -3,97 +3,39 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Buoyant
 providerId: buoyant
+generated: '2026-09-04'
+method: searched
+source: >-
+  https://www.buoyant.io/pricing, https://docs.buoyant.io/, https://linkerd.io/docs/reference/,
+  and a live probe of https://api.buoyant.cloud (2026-09-04).
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - AI Observability
-  - Kubernetes
-  - Linkerd
-  - mTLS
-  - Observability
-  - Service Mesh
-  - Zero Trust
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Buoyant API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+modified: '2026-09-04'
+limit_count: 0
+note: >-
+  REPLACES a 2026-05-04 bulk-sweep scaffold that invented free/professional/enterprise
+  request-per-minute quotas and X-RateLimit-* response headers for a surface that does
+  not exist. Buoyant publishes NO rate limits for any of its own endpoints, and no
+  rate-limit response headers were observed. The published contract is in-cluster gRPC
+  (see grpc/) — a customer runs it on their own infrastructure, so there is no shared
+  metered endpoint to throttle. api.buoyant.cloud is a gRPC agent endpoint whose only
+  documented callers are the customer's own Buoyant Cloud agents; it publishes no
+  documented limits. An honest zero, not an omission.
+limits: []
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  published: false
+  observed: []
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Linkerd Service Mesh
-      - Buoyant Enterprise Linkerd (BEL)
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Linkerd Service Mesh
-      - Buoyant Enterprise Linkerd (BEL)
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Linkerd Service Mesh
-      - Buoyant Enterprise Linkerd (BEL)
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Linkerd Service Mesh
-      - Buoyant Enterprise Linkerd (BEL)
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Linkerd Service Mesh
-      - Buoyant Enterprise Linkerd (BEL)
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  published: false
+inverse_capability:
+  note: >-
+    Buoyant sells rate-limit HANDLING rather than publishing rate limits. Linkerd
+    provides HTTPLocalRateLimitPolicy for meshed services, and Buoyant Enterprise for
+    Linkerd 2.20.0 added rate-limit-aware load balancing in which circuit breaking and
+    endpoint selection account for HTTP 429 responses returned by the proxied service.
+  sources:
+    - https://linkerd.io/docs/reference/rate-limiting/
+    - https://linkerd.io/docs/tasks/rate-limit-aware-load-balancing/
+    - https://docs.buoyant.io/release-notes/buoyant-enterprise-linkerd/enterprise-2.20.0/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

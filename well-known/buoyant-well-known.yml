@@ -1,0 +1,104 @@
+specification: API Commons Well-Known
+specificationVersion: '0.1'
+provider: Buoyant
+providerId: buoyant
+generated: '2026-09-04'
+method: probed
+source: live HTTPS probes of every host named in apis.yml, the docs host, the Buoyant Cloud app + API
+  hosts, and the Helm chart host
+note: "No host served a real /.well-known document. buoyant.io / www.buoyant.io return a 404 with an 'Invalid\
+  \ .well-known request' body; linkerd.io and docs.buoyant.io return their Hugo 404 page; api.buoyant.cloud\
+  \ is a gRPC-only endpoint and answers every HTTP path with 415 'invalid gRPC request content-type';\
+  \ buoyant.cloud is a single-page app whose catch-all returns HTTP 200 with the app HTML shell for every\
+  \ /.well-known/* path \u2014 that is an SPA shell, not a document, and is recorded as a miss. No WellKnown\
+  \ or SecurityTxt pointer is emitted for this repo."
+hosts:
+- host: buoyant.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: www.buoyant.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: linkerd.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: docs.buoyant.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: api.buoyant.cloud
+  documents:
+  - path: /.well-known/security.txt
+    status: 415
+  - path: /.well-known/openid-configuration
+    status: 415
+  - path: /.well-known/oauth-authorization-server
+    status: 415
+  - path: /.well-known/api-catalog
+    status: 415
+  - path: /.well-known/ai-plugin.json
+    status: 415
+- host: buoyant.cloud
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: "200 returned an HTML/SPA shell, not a document \u2014 treated as a miss"
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: "200 returned an HTML/SPA shell, not a document \u2014 treated as a miss"
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: "200 returned an HTML/SPA shell, not a document \u2014 treated as a miss"
+  - path: /.well-known/api-catalog
+    status: 200
+    note: "200 returned an HTML/SPA shell, not a document \u2014 treated as a miss"
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: "200 returned an HTML/SPA shell, not a document \u2014 treated as a miss"
+- host: helm.buoyant.cloud
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

@@ -1,0 +1,87 @@
+specification: API Commons ChangeLog
+specificationVersion: '0.1'
+provider: Buoyant
+providerId: buoyant
+generated: '2026-09-04'
+method: searched
+source: https://docs.buoyant.io/release-notes/
+docs: https://docs.buoyant.io/release-notes/
+note: >-
+  Buoyant publishes dated, per-version release notes for four separately versioned
+  products: Buoyant Enterprise for Linkerd, the Buoyant Extension (Buoyant Cloud agent),
+  the Linkerd Dashboard, and Buoyant Cloud itself. The open-source Linkerd project
+  publishes its own releases at https://github.com/linkerd/linkerd2/releases. Only a
+  recent window is captured here.
+schemes:
+  - product: Buoyant Enterprise for Linkerd
+    scheme: semver-derived
+    pattern: enterprise-<major>.<minor>.<patch>[-<hotpatch>]
+    current: enterprise-2.20.2
+    channel_url: https://docs.buoyant.io/release-notes/buoyant-enterprise-linkerd/
+  - product: Buoyant Extension (linkerd-buoyant)
+    scheme: semver
+    pattern: v<major>.<minor>.<patch>
+    current: v0.40.6
+    channel_url: https://docs.buoyant.io/release-notes/buoyant-extension/
+  - product: Linkerd Dashboard
+    scheme: semver
+    pattern: v<major>.<minor>.<patch>
+    current: v0.11.1
+    channel_url: https://docs.buoyant.io/release-notes/linkerd-dashboard/
+  - product: Buoyant Cloud
+    scheme: date
+    pattern: YYYY-MM-DD
+    channel_url: https://docs.buoyant.io/release-notes/buoyant-cloud/
+  - product: Linkerd (open source, edge channel)
+    scheme: calver
+    pattern: edge-<yy>.<m>.<n>
+    current: edge-26.9.1
+    channel_url: https://github.com/linkerd/linkerd2/releases
+entries:
+  - version: edge-26.9.1
+    product: Linkerd (open source)
+    date: '2026-09-04'
+    breaking: false
+    url: https://github.com/linkerd/linkerd2/releases
+    highlights:
+      - Current open-source edge release; matching Helm charts published to helm.linkerd.io/edge the same day.
+  - version: v0.40.6
+    product: Buoyant Extension
+    date: '2026-09-02'
+    breaking: false
+    url: https://docs.buoyant.io/release-notes/buoyant-extension/v0.40.6/
+  - version: enterprise-2.20.2
+    product: Buoyant Enterprise for Linkerd
+    date: '2026-08-26'
+    breaking: false
+    url: https://docs.buoyant.io/release-notes/buoyant-enterprise-linkerd/enterprise-2.20.2/
+    highlights:
+      - Official support for Kubernetes 1.36 (minimum remains 1.31).
+      - Gateway API v1.5.1 compatibility.
+      - Fixed a HAZL bug that always sent a small amount of traffic cross-zone, causing connection churn and elevated proxy CPU.
+    security:
+      - Go runtime vulnerability patches GO-2026-6218, GO-2026-6091, GO-2026-6090, GO-2026-6089, GO-2026-6088, GO-2026-5972, GO-2026-5026.
+      - Dependency updates for oras.land/oras-go/v2 (GHSA-fxhp-mv3v-67qp), klauspost/compress (GO-2026-5841), go.opentelemetry.io/otel (GO-2026-5158 / CVE-2026-41178).
+  - version: enterprise-2.20.1
+    product: Buoyant Enterprise for Linkerd
+    url: https://docs.buoyant.io/release-notes/buoyant-enterprise-linkerd/enterprise-2.20.1/
+  - version: enterprise-2.20.0
+    product: Buoyant Enterprise for Linkerd
+    date: '2026-06-23'
+    breaking: true
+    url: https://docs.buoyant.io/release-notes/buoyant-enterprise-linkerd/enterprise-2.20.0/
+    highlights:
+      - Automated mTLS trust anchor rotation via a new operator.
+      - Alpha Windows VM support for mesh expansion outside Kubernetes.
+      - Rate-limit-aware load balancing — circuit breaking now accounts for HTTP 429 responses.
+      - Native sidecars promoted to GA and made the default deployment model.
+      - Up to 84% reduction in destination controller memory usage.
+    breaking_changes:
+      - The standalone proxy-init image is merged into a single proxy image; remove proxyInit.image Helm values, --init-image CLI flags and related pod annotations.
+      - Minimum Kubernetes 1.21+ and Gateway API 1.2.1+ required.
+      - Native sidecars enabled by default.
+    deprecations:
+      - config.beta.linkerd.io/proxy-enable-native-sidecar is deprecated in favour of config.linkerd.io/proxy-enable-native-sidecar, and is to be removed in the next major Linkerd version.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,52 @@
+# Buoyant
+
+> Buoyant is the creator and primary maintainer of Linkerd, the CNCF graduated
+> open source service mesh for Kubernetes. Buoyant provides Enterprise Linkerd
+> with commercial support, security, and compliance features for organizations
+> running Linkerd in production.
+
+## Product
+
+- [Enterprise Linkerd](https://www.buoyant.io/linkerd-enterprise): Commercial distribution of Linkerd with enterprise support, FIPS compliance, and lifecycle management
+- [Pricing](https://www.buoyant.io/pricing): Plans and pricing for Enterprise Linkerd
+- [Solutions Overview](https://www.buoyant.io/solutions): Use cases including zero trust security, edge Kubernetes, and FIPS compliance
+- [Zero Trust Security](https://www.buoyant.io/zero-trust-in-kubernetes-with-linkerd): Zero trust network security in Kubernetes with Linkerd
+- [FIPS 140-2 and 140-3](https://www.buoyant.io/fips-kubernetes-service-mesh): FIPS validated encryption in transit for Kubernetes
+- [Kubernetes at the Edge](https://www.buoyant.io/kubernetes-service-mesh-edge): Service mesh for edge Kubernetes deployments
+
+## Documentation
+
+- [Buoyant Docs](https://docs.buoyant.io): Official Enterprise Linkerd documentation
+- [Linkerd Docs](https://linkerd.io/docs/): Open source Linkerd documentation
+- [Getting Started with Linkerd](https://linkerd.io/2/getting-started/): Quickstart guide for installing Linkerd
+- [Linkerd FAQ](https://linkerd.io/faq/): Frequently asked questions about Linkerd
+- [What Is a Service Mesh?](https://www.buoyant.io/what-is-a-service-mesh): Foundational explainer on service mesh concepts
+- [mTLS Guide](https://www.buoyant.io/mtls-guide): A Kubernetes engineer's guide to mutual TLS
+
+## Blog
+
+- [Buoyant Blog](https://www.buoyant.io/blog): Articles on Linkerd, service mesh, Kubernetes, and platform engineering
+- [Linkerd Blog](https://linkerd.io/blog/): Open source project blog with release notes and technical deep dives
+
+## Case Studies
+
+- [Case Studies](https://www.buoyant.io/case-studies): How organizations run Linkerd in production
+- [Adidas](https://buoyant.io/case-studies/adidas/): Closed observability gaps and reduced failed requests
+- [Xbox](https://buoyant.io/case-studies/xbox/): Replaced in-house mTLS solution with Linkerd
+- [Linkerd Adopters](https://linkerd.io/community/adopters/): Full list of production Linkerd adopters
+
+## Learning & Community
+
+- [Service Mesh Academy](https://www.buoyant.io/service-mesh-academy): Hands-on Linkerd training for engineers
+- [Self-paced Courses](https://www.buoyant.io/self-paced-courses): Service mesh certification courses
+- [Buoyant Linkerd Forum](https://linkerd.buoyant.io): Community support from maintainers and experts
+- [Linkerd vs Istio](https://www.buoyant.io/linkerd-vs-istio): Comparison of the two service meshes
+- [Linkerd vs Cilium](https://www.buoyant.io/linkerd-vs-cilium): Key differences between Linkerd and Cilium
+
+## Company
+
+- [About Buoyant](https://www.buoyant.io/about-us): Mission and story of Buoyant
+- [Partners](https://www.buoyant.io/partners): Buoyant partner ecosystem
+- [Newsroom](https://www.buoyant.io/newsroom): Latest news and press
+- [Careers](https://www.buoyant.io/careers): Open positions at Buoyant
+- [Contact](https://www.buoyant.io/contact): Get in touch with Buoyant

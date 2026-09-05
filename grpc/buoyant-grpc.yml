@@ -1,0 +1,78 @@
+specification: API Commons gRPC
+specificationVersion: '0.1'
+provider: Buoyant
+providerId: buoyant
+generated: '2026-09-04'
+method: searched
+source: >-
+  .proto files saved verbatim on 2026-09-04 from the first-party source repositories:
+  https://github.com/linkerd/linkerd2-proxy-api (proto/) and
+  https://github.com/linkerd/linkerd2 (viz/metrics-api/proto, viz/tap/proto).
+ownership: >-
+  Linkerd is a CNCF-graduated project created and primarily maintained by Buoyant —
+  Buoyant's own llms.txt states "Buoyant is the creator and primary maintainer of
+  Linkerd" — and the linkerd2-proxy-api gRPC bindings repository is additionally
+  mirrored under the BuoyantIO GitHub organisation. Buoyant Enterprise for Linkerd
+  ships these same services. That is why a linkerd.io/github.com/linkerd contract is
+  recorded under the Buoyant provider record rather than being rejected as a
+  different-domain spec.
+note: >-
+  These protobuf service definitions are Buoyant/Linkerd's machine-readable contract.
+  They are IN-CLUSTER control-plane and data-plane APIs — an operator reaches them
+  inside a Kubernetes cluster (linkerd-destination, linkerd-identity,
+  linkerd-policy, metrics-api), not over a public internet base URL. A separate
+  first-party gRPC surface, api.buoyant.cloud, is the Buoyant Cloud agent endpoint;
+  it answers every HTTP request with 415 "invalid gRPC request content-type"
+  (observed 2026-09-04), no reflection or published .proto was found for it, and it
+  is documented only as the host the agent calls, so no contract is recorded for it.
+services:
+  - name: io.linkerd.proxy.destination.Destination
+    file: grpc/buoyant-linkerd-proxy-api-destination.proto
+    rpcs: [Get, GetProfile]
+    description: Service discovery and per-service profile resolution for the proxy.
+  - name: io.linkerd.proxy.identity.Identity
+    file: grpc/buoyant-linkerd-proxy-api-identity.proto
+    rpcs: [Certify]
+    description: >-
+      Issues the workload's mTLS leaf certificate from a Kubernetes ServiceAccount
+      token — the root of Linkerd's cryptographic workload identity.
+  - name: io.linkerd.proxy.inbound.InboundServerPolicies
+    file: grpc/buoyant-linkerd-proxy-api-inbound.proto
+    rpcs: [GetPort, WatchPort]
+    description: Inbound authorization policy for a given port, with a watch stream.
+  - name: io.linkerd.proxy.outbound.OutboundPolicies
+    file: grpc/buoyant-linkerd-proxy-api-outbound.proto
+    rpcs: [Get, Watch]
+    description: Outbound routing, retry, timeout and failover policy, with a watch stream.
+  - name: io.linkerd.proxy.tap.Tap
+    file: grpc/buoyant-linkerd-proxy-api-tap.proto
+    rpcs: [Observe]
+    description: Live request/response observation stream from the proxy.
+  - name: linkerd2.viz.Api
+    file: grpc/buoyant-linkerd-viz-metrics-api.proto
+    rpcs: [StatSummary, Edges, Gateways, TopRoutes, ListPods, ListServices, SelfCheck, Authz]
+    description: >-
+      The Linkerd Viz metrics API — the golden-metrics surface behind `linkerd viz stat`,
+      the Linkerd dashboard, and the Buoyant Cloud UI.
+  - name: linkerd2.tap.Tap
+    file: grpc/buoyant-linkerd-viz-tap.proto
+    rpcs: [Tap, TapByResource]
+    description: >-
+      Viz tap service. BOTH RPCs are marked `option deprecated = true` in the contract
+      itself; see lifecycle/buoyant-lifecycle.yml.
+supporting_messages:
+  - grpc/buoyant-linkerd-proxy-api-http_route.proto
+  - grpc/buoyant-linkerd-proxy-api-grpc_route.proto
+  - grpc/buoyant-linkerd-proxy-api-tls_route.proto
+  - grpc/buoyant-linkerd-proxy-api-opaque_route.proto
+  - grpc/buoyant-linkerd-proxy-api-http_types.proto
+  - grpc/buoyant-linkerd-proxy-api-meta.proto
+  - grpc/buoyant-linkerd-proxy-api-net.proto
+coverage:
+  proto_files: 14
+  services: 7
+  rpcs: 18
+  deprecated_rpcs: 2
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
