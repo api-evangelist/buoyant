@@ -1,31 +1,29 @@
-# Kin Score artifact — buoyant — 2026-08-28T221322
+# Kin Score artifact — buoyant — 2026-09-23T000603
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: buoyant
-  schema_version: 0.15.1
-  scored_at: '2026-08-28'
-  run_ts: 2026-08-28T221322
-  composite: 22.2
-  band: emerging
+  schema_version: 0.22.0
+  scored_at: '2026-09-23'
+  run_ts: 2026-09-23T000603
+  composite: 52.5
+  band: developing
   facets:
-    discoverability: 59.3
-    contract_quality: 0.0
-    governance: 0.0
+    discoverability: 72.2
+    contract_quality: 26.7
+    contract_governance: 4.5
     operational_transparency: 36.8
-    developer_ergonomics: 31.0
-    commercial_clarity: 26.3
-    contract_governance: 0.0
-    access_clarity: 26.3
+    developer_ergonomics: 71.4
+    access_clarity: 68.4
   agent_readiness:
-    score: 2.5
-    band: human-only
+    score: 18.0
+    band: agent-aware
     dimensions:
-      spec_presence: false
+      spec_presence: true
       agentic_access: false
       reversibility_documented: false
       mcp_server: false
-      auth_clarity: false
+      auth_clarity: bearer
       idempotency: false
       error_semantics: false
       openapi_examples: false
@@ -40,3 +38,8 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  open_source:
+    applies: true
+    score: 100.0
+  provenance:
+    conformance: derived
