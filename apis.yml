@@ -172,6 +172,8 @@ apis:
         url: https://docs.buoyant.io/release-notes/buoyant-cloud/
 
 common:
+  - type: FinOps
+    url: finops/buoyant-finops.yml
   - type: Website
     url: https://buoyant.io/
   - type: IssueTracker
