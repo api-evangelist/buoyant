@@ -14,6 +14,7 @@ checked:
 - https://registry.npmjs.org
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
+- artifact-hub/integrations/artifact-hub-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -32,23 +33,6 @@ edges:
   seller_name: Buoyant Inc.
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: Datadog (own)
-  partner: datadog
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://github.com/DataDog/integrations-extras/tree/master/buoyant_cloud
-  mirror_of: datadog/integrations/datadog-integration-edges.yml
-  apps:
-  - Buoyant Cloud
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Cloud
 - partner_name: Go module proxy
   partner: null
   partner_match: null
@@ -177,5 +161,55 @@ edges:
     detected: '2026-10-19'
   detected_by: sweep-api-management.py
   first_seen: '2026-10-18'
+- partner_name: Datadog (own)
+  partner: datadog
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/buoyant_cloud
+  mirror_of: datadog/integrations/datadog-integration-edges.yml
+  apps:
+  - Buoyant Cloud
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Cloud
+- partner_name: Artifact Hub (artifact-hub)
+  partner: artifact-hub
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: artifact-hub
+  evidence: https://artifacthub.io/packages/search?repo=linkerd-buoyant
+  mirror_of: artifact-hub/integrations/artifact-hub-integration-edges.yml
+  apps:
+  - linkerd-buoyant
+  - linkerd-enterprise-control-plane
+  - linkerd-enterprise-crds
+  - linkerd-enterprise-multicluster
+  - linkerd-preview-control-plane
+  - linkerd-preview-crds
+  - linkerd-preview-multicluster
+  - linkerd-preview-viz
+  - linkerd-viz
+  - linkerd-control-plane
+  - linkerd-crds
+  - linkerd-jaeger
+  - linkerd2-cni
+  - linkerd-multicluster
+  - linkerd-failover
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Artifact Hub listing (Helm chart)
+  badges:
+  - 'Verified publisher (Artifact Hub verified publisher: repository ownership proven)'
 source:
 - datadog/integrations/datadog-integration-edges.yml

@@ -15,19 +15,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: buoyant-datadog-own
-  label: Datadog (own)
-  partner: datadog
-  partner_name: Datadog (own)
-  category: Cloud
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://github.com/DataDog/integrations-extras/tree/master/buoyant_cloud
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: buoyant-go-module-proxy
   label: Go module proxy
   partner_name: Go module proxy
@@ -129,5 +116,31 @@
       the current window; versions are context, never read
     detected_by: sweep-api-management.py
     detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: buoyant-datadog-own
+  label: Datadog (own)
+  partner: datadog
+  partner_name: Datadog (own)
+  category: Cloud
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/buoyant_cloud
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: buoyant-artifact-hub-artifact-hub
+  label: Artifact Hub (artifact-hub)
+  partner: artifact-hub
+  partner_name: Artifact Hub (artifact-hub)
+  category: Artifact Hub listing (Helm chart)
+  type: marketplace
+  marketplace: artifact-hub
+  channel: partner-built
+  evidence: https://artifacthub.io/packages/search?repo=linkerd-buoyant
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
