@@ -1,4 +1,4 @@
-# Buoyant (buoyant)
+# Buoyant
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,62 +66,113 @@
 
 Buoyant is the creator of Linkerd, the CNCF-graduated service mesh for Kubernetes. Linkerd provides zero-trust security via mutual TLS, ultra-high availability with automated failover, and observability for microservices including AI/LLM workloads. Buoyant Enterprise Linkerd adds enterprise features including FIPS 140-2/140-3 validated encryption and multi-cluster support.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/buoyant/refs/heads/main/apis.yml)
+**Areas:** AI Observability · Kubernetes · Linkerd · mTLS · Observability · Service Mesh · Zero Trust
 
-## Scope
+## Buoyant on APIs.io
 
-- **Type:** Index
-- **x-type:** company
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Buoyant is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/buoyant/](https://apis.io/providers/buoyant/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- AI Observability
-- Kubernetes
-- Linkerd
-- mTLS
-- Observability
-- Service Mesh
-- Zero Trust
+- [Linkerd Service Mesh](https://apis.io/apis/buoyant/linkerd/) — Linkerd is a CNCF-graduated service mesh for Kubernetes that transparently adds mutual TLS encryption, latency-aware load balancing, retries, timeouts,…
+- [Buoyant Enterprise Linkerd (BEL)](https://apis.io/apis/buoyant/buoyant-enterprise-linkerd/) — Buoyant Enterprise Linkerd is the enterprise-supported distribution of Linkerd with additional features including FIPS-validated cryptography, lifecycle…
+- [Buoyant Cloud](https://apis.io/apis/buoyant/buoyant-cloud/) — Buoyant Cloud is the hosted control surface for Linkerd fleets — health checks, golden metrics, multi-cluster link management and automated Linkerd…
 
-## APIs
+### Published properties
 
-### Linkerd Service Mesh
-Linkerd is a CNCF-graduated service mesh for Kubernetes that transparently adds mutual TLS encryption, latency-aware load balancing, retries, timeouts, circuit breaking, and observability to any Kubernetes workload without code changes.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-**Human URL:** [https://linkerd.io/](https://linkerd.io/)
+#### Security (3)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://linkerd.io/2.x/overview/)
-- [Reference](https://linkerd.io/2.x/reference/)
-- [GitHub Repository](https://github.com/linkerd/linkerd2)
+- [Buoyant Authentication](https://apis.io/security/buoyant/buoyant-authentication/)
+- [Buoyant Domain Security](https://apis.io/security/buoyant/buoyant-domain-security/)
+- [Buoyant Vulnerability Disclosure](https://apis.io/security/buoyant/buoyant-vulnerability-disclosure/)
 
-### Buoyant Enterprise Linkerd (BEL)
-Enterprise-supported distribution of Linkerd with FIPS-validated cryptography, lifecycle automation, multi-cluster networking, and enterprise SLA support.
+#### Plans and pricing (1)
 
-**Human URL:** [https://buoyant.io/linkerd-enterprise](https://buoyant.io/linkerd-enterprise)
+Published plans, tiers and prices.
 
-#### Properties
+- [Buoyant Plans Pricing](https://apis.io/plans/buoyant/buoyant-plans-pricing/)
 
-- [Documentation](https://docs.buoyant.io/buoyant-enterprise-linkerd/latest/overview/)
+#### Rate limits (1)
 
-## Common Properties
+Published request limits.
 
-- [Portal](https://buoyant.io/)
-- [Documentation](https://linkerd.io/2.x/overview/)
-- [GitHub Organization](https://github.com/linkerd)
-- [Blog](https://buoyant.io/blog/)
+- [Buoyant Rate Limits](https://apis.io/rate-limits/buoyant/buoyant-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Buoyant Finops](https://apis.io/finops/buoyant/buoyant-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://buoyant.io/)
+- [Documentation](https://linkerd.io/docs/)
+- [Getting started](https://linkerd.io/2/getting-started/)
+- [API reference](https://linkerd.io/docs/reference/)
 - [Pricing](https://buoyant.io/pricing/)
-- [Slack](https://slack.linkerd.io/)
+- [Support](https://www.buoyant.io/linkerd-support)
+- [Blog](https://buoyant.io/blog/)
+- [Privacy policy](https://www.buoyant.io/privacy-policy)
+- [GitHub](https://github.com/linkerd)
 
-## Timestamps
+## API Evangelist rating
 
-- **Created:** 2026-01-02
-- **Modified:** 2026-04-21
+**Kin Score 52.6** — developing · rubric 0.25.0 · scored 2026-10-23
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 24.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 71.4 |
+| Access clarity | 60.5 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 18.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 31.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/buoyant/](https://apis.io/providers/buoyant/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Buoyant: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/buoyant/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
